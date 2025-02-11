@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title> Mohamed Hamdy </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                margin: 0;
+                padding: 0;
+            }
+    
+            #emoji-container {
+                position: relative;
+                width: 100%;
+                height: 100vh;
+                overflow: hidden;
+            }
+    
+            .emoji {
+                position: absolute;
+                font-size: 40px;
+                animation: fall 3s linear infinite;
+            }
+    
+            @keyframes fall {
+                from {
+                    top: -50px;
+                }
+                to {
+                    top: 100vh;
+                }
+            }
+    
+            .hidden {
+                display: none;
+            }
+    
+            button {
+                border-radius: 5%;
+                background-color: gold;
+                padding: 10px 20px;
+                margin-top: 300px;
+                font-size: 18px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body
+    style="
+    color: black;
+    background-color: black;
+    text-align: center;
+    ">
+    <button onclick="startFalling()">Click here</button>
+    <div id="emoji-container" class="hidden">
+        <h1
+    style="
+    color: gold;
+    font-style: oblique;">
+    Happy birthday Mohamed 
+    </h1>
+    <img src="" alt="Mohamed">
+        <span class="emoji" style="left: 20%;">😊</span>
+        <span class="emoji" style="left: 40%;">🥳</span>
+        <span class="emoji" style="left: 60%;">😍</span>
+        <span class="emoji" style="left: 80%;">🥳</span>
+    </div>
+
+    <script>
+        function startFalling() {
+            // إظهار div الذي يحتوي على الإيموجيات
+            document.getElementById('emoji-container').classList.remove('hidden');
+            
+            // إضافة المزيد من الإيموجيات عشوائيًا
+            setInterval(function() {
+                var emojiContainer = document.getElementById('emoji-container');
+                var emojis = ['😊',  '😍', '🥳'];
+                var randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+                var randomLeft = Math.random() * 100;
+
+                var emoji = document.createElement('span');
+                emoji.classList.add('emoji');
+                emoji.style.left = randomLeft + '%';
+                emoji.textContent = randomEmoji;
+
+                emojiContainer.appendChild(emoji);
+                
+                // حذف الإيموجي بعد أن يكتمل التحريك
+                setTimeout(function() {
+                    emoji.remove();
+                }, 3000); // يتم الحذف بعد 3 ثواني
+            }, 500); // إضافة إيموجي جديد كل 500 ملي ثانية
+        }
+    </script>    
+    </body>
+</html>
